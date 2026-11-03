@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><filter id="s" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".35"/></filter></defs>
-<g filter="url(#s)" transform="translate(100 100) scale(.8046875)"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f38"/><stop offset="1" stop-color="#14171c"/></linearGradient></defs>
+<g filter="url(#s)" transform="translate(100 100) scale(.8046875)"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E08565"/><stop offset="1" stop-color="#C15C3A"/></linearGradient></defs>
 <rect width="1024" height="1024" rx="228" fill="url(#g)"/>
-<rect x="6" y="6" width="1012" height="1012" rx="222" fill="none" stroke="#fff" stroke-opacity="0" stroke-width="4"/><rect x="200" y="250" width="48" height="450" fill="#ece6d8"/><rect x="290" y="250" width="28" height="450" fill="#ece6d8"/><rect x="360" y="250" width="60" height="450" fill="#ece6d8"/><rect x="462" y="250" width="28" height="450" fill="#ece6d8"/><rect x="532" y="250" width="48" height="450" fill="#ece6d8"/><rect x="640" y="190" width="70" height="610" fill="#d4a24c"/>
-<path d="M710 190 C 740 300, 880 320, 850 500 C 830 410, 780 390, 710 380 Z" fill="#d4a24c"/>
-<ellipse cx="585" cy="800" rx="135" ry="95" transform="rotate(-24 585 800)" fill="#d4a24c"/></g></svg>
+<rect x="6" y="6" width="1012" height="1012" rx="222" fill="none" stroke="#fff" stroke-opacity="0" stroke-width="4"/><rect x="200" y="250" width="48" height="450" fill="#FAF9F5"/><rect x="290" y="250" width="28" height="450" fill="#FAF9F5"/><rect x="360" y="250" width="60" height="450" fill="#FAF9F5"/><rect x="462" y="250" width="28" height="450" fill="#FAF9F5"/><rect x="532" y="250" width="48" height="450" fill="#FAF9F5"/><rect x="640" y="190" width="70" height="610" fill="#FFFFFF"/>
+<path d="M710 190 C 740 300, 880 320, 850 500 C 830 410, 780 390, 710 380 Z" fill="#FFFFFF"/>
+<ellipse cx="585" cy="800" rx="135" ry="95" transform="rotate(-24 585 800)" fill="#FFFFFF"/></g></svg>

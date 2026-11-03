@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>my chaotic room</title>
+  <link rel="stylesheet" href="ds/tokens.css">
+  <link rel="stylesheet" href="ds/components.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="janela">
+    <header class="cabecalho">
+      <div class="marca">
+        <img src="icone.png" alt="">
+        <div>
+          <div class="marca-nome">my chaotic room</div>
+          <div class="marca-sub" id="subtitulo">0 instrumentos cadastrados</div>
+        </div>
+      </div>
+      <span class="espaco"></span>
+      <label class="busca">
+        <i data-icone="search" data-tamanho="16"></i>
+        <input class="entrada" id="busca" type="search" placeholder="Buscar por tipo, marca, modelo…" autocomplete="off" spellcheck="false">
+      </label>
+      <button class="btn btn-primario" id="btn-novo"><i data-icone="plus"></i>Novo instrumento</button>
+    </header>
+
+    <div class="corpo">
+      <!-- lista -->
+      <section class="cartao painel-tabela">
+        <div class="tabela-rolagem rolavel" id="rolagem">
+          <table class="tabela" id="tabela">
+            <thead><tr>
+              <th class="ordenavel" data-col="tipo">Tipo</th>
+              <th class="ordenavel" data-col="marca">Marca</th>
+              <th class="ordenavel" data-col="modelo">Modelo</th>
+              <th class="ordenavel" data-col="numero_serie">Nº de série</th>
+              <th class="ordenavel" data-col="data_inclusao">Data de inclusão</th>
+            </tr></thead>
+            <tbody id="linhas"></tbody>
+          </table>
+          <div class="vazio oculto" id="vazio">
+            <span class="vazio-icone"><i data-icone="guitar" data-tamanho="26" data-traco="1.75"></i></span>
+            <span class="titulo-md" id="vazio-titulo">Nenhum instrumento cadastrado</span>
+            <span class="texto-2" id="vazio-texto">Comece pela sua guitarra, um pedal ou aquele cabo que sempre some.</span>
+            <button class="btn btn-secundario" id="vazio-novo"><i data-icone="plus"></i>Novo instrumento</button>
+          </div>
+        </div>
+        <div class="rodape-tabela">
+          <span class="pequeno texto-3" id="rodape">0 de 0 instrumentos</span>
+          <span class="espaco"></span>
+          <span class="mini texto-3 dica-teclas"><kbd>Ctrl</kbd> ou <kbd>Shift</kbd> + clique para selecionar vários</span>
+        </div>
+      </section>
+
+      <!-- detalhes -->
+      <aside class="cartao painel-detalhe">
+        <div class="detalhe-conteudo rolavel" id="detalhe">
+          <div class="detalhe-vazio" id="detalhe-vazio">
+            <i data-icone="eye" data-tamanho="22"></i>
+            <span>Selecione um instrumento para ver a foto e os detalhes.</span>
+          </div>
+          <div class="detalhe-varios oculto" id="detalhe-varios">
+            <span class="titulo-md" id="varios-titulo">3 itens selecionados</span>
+            <span class="texto-2 pequeno">Use Excluir para apagar todos de uma vez.</span>
+          </div>
+          <div class="oculto" id="detalhe-um">
+            <button class="foto" id="foto" title="Abrir a foto">
+              <img id="foto-img" alt="">
+              <span class="foto-vazia" id="foto-vazia"><i data-icone="image" data-tamanho="22"></i>Sem foto</span>
+            </button>
+            <div class="detalhe-tipo" id="d-tipo"></div>
+            <h2 class="titulo-md detalhe-nome" id="d-nome"></h2>
+            <dl class="dados">
+              <dt>Marca</dt><dd id="d-marca"></dd>
+              <dt>Modelo</dt><dd id="d-modelo"></dd>
+              <dt>Nº de série</dt><dd class="mono selecionavel" id="d-serie"></dd>
+              <dt>Data de inclusão</dt><dd id="d-data"></dd>
+            </dl>
+            <div class="observacoes oculto" id="d-obs-bloco">
+              <div class="rotulo">Observações</div>
+              <p class="selecionavel" id="d-obs"></p>
+            </div>
+          </div>
+        </div>
+        <div class="detalhe-acoes">
+          <button class="btn btn-secundario" id="btn-editar" disabled><i data-icone="pencil" data-tamanho="15"></i>Editar</button>
+          <button class="btn btn-perigo" id="btn-excluir" disabled><i data-icone="trash-2" data-tamanho="15"></i>Excluir</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- cadastro / edicao -->
+  <div class="fundo-modal oculto" id="modal-form">
+    <form class="modal" id="form" role="dialog" aria-modal="true" aria-labelledby="form-titulo" autocomplete="off">
+      <div class="modal-cabeca">
+        <span class="titulo-md" id="form-titulo">Novo instrumento</span>
+        <span class="espaco"></span>
+        <button type="button" class="btn btn-icone" id="form-fechar" title="Fechar (Esc)"><i data-icone="x"></i></button>
+      </div>
+      <div class="modal-corpo form-grade">
+        <label class="campo largo">
+          <span class="rotulo">Tipo <span class="obrigatorio">*</span></span>
+          <div class="sugestoes-ancora">
+            <input class="entrada" id="f-tipo" placeholder="Ex.: Guitarra, Pedal, Microfone" spellcheck="false">
+            <div class="menu sugestoes" id="sugestoes" role="listbox"></div>
+          </div>
+          <span class="ajuda erro-campo oculto" id="erro-tipo">Informe o tipo do item.</span>
+        </label>
+        <label class="campo"><span class="rotulo">Marca</span><input class="entrada" id="f-marca" spellcheck="false"></label>
+        <label class="campo"><span class="rotulo">Modelo</span><input class="entrada" id="f-modelo" spellcheck="false"></label>
+        <label class="campo"><span class="rotulo">Número de série</span><input class="entrada mono" id="f-serie" spellcheck="false"></label>
+        <div class="campo">
+          <span class="rotulo">&nbsp;</span>
+          <button type="button" class="btn btn-secundario" id="btn-google"><i data-icone="search" data-tamanho="15"></i>Buscar no Google</button>
+        </div>
+        <div class="campo largo">
+          <span class="rotulo">Foto</span>
+          <div class="foto-campo">
+            <div class="foto-previa" id="f-previa"><i data-icone="image" data-tamanho="20"></i></div>
+            <div class="coluna foto-campo-texto">
+              <input class="entrada" id="f-foto" placeholder="Nenhuma foto escolhida" spellcheck="false">
+              <div class="linha">
+                <button type="button" class="btn btn-secundario btn-sm" id="btn-escolher"><i data-icone="folder-open" data-tamanho="14"></i>Escolher…</button>
+                <button type="button" class="btn btn-fantasma btn-sm" id="btn-tirar-foto">Remover foto</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <label class="campo largo"><span class="rotulo">Observações</span><textarea class="area-texto" id="f-obs" rows="3"></textarea></label>
+      </div>
+      <div class="modal-rodape">
+        <button type="button" class="btn btn-secundario" id="form-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-primario" id="form-salvar">Salvar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- confirmar exclusao -->
+  <div class="fundo-modal oculto" id="modal-excluir">
+    <div class="modal modal-pequeno" role="alertdialog" aria-modal="true" aria-labelledby="excluir-titulo">
+      <div class="modal-cabeca"><span class="titulo-md" id="excluir-titulo">Confirmar exclusão</span></div>
+      <div class="modal-corpo">
+        <p class="excluir-pergunta" id="excluir-pergunta"></p>
+        <ul class="excluir-lista oculto" id="excluir-lista"></ul>
+        <p class="pequeno texto-3">Uma cópia do cadastro é guardada na pasta de backups antes de excluir.</p>
+      </div>
+      <div class="modal-rodape">
+        <button class="btn btn-secundario" id="excluir-nao">Cancelar</button>
+        <button class="btn btn-perigo-cheio" id="excluir-sim"><i data-icone="trash-2" data-tamanho="15"></i>Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="ds/icons.js"></script>
+  <script src="ds/ds.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

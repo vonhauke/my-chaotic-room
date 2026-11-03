@@ -1,0 +1,94 @@
+/* my chaotic room - estilos proprios (o resto vem do design system em ds/) */
+
+.janela { height: 100vh; display: flex; flex-direction: column; gap: 18px; padding: 24px 28px 24px; }
+
+.cabecalho { display: flex; align-items: center; gap: 12px; }
+.cabecalho .busca { width: 300px; }
+.cabecalho .busca .entrada { height: 38px; }
+
+.corpo { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 300px; gap: 18px; }
+
+/* ---------- tabela ---------- */
+.painel-tabela { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.tabela-rolagem { flex: 1; min-height: 0; position: relative; }
+.tabela th { height: 42px; font-size: var(--texto-xs); text-transform: uppercase; letter-spacing: .04em; color: var(--texto-3); }
+.tabela th:first-child, .tabela td:first-child { padding-left: 18px; }
+.tabela th .seta { display: inline-block; margin-left: 4px; color: var(--acento-texto); }
+.tabela th.ativa { color: var(--texto); }
+.tabela td { height: 50px; font-size: var(--texto-md); }
+.tabela td.tipo { font-weight: 550; }
+.tabela td.mono { font-family: var(--fonte-mono); font-size: 12.5px; color: var(--texto-2); }
+.tabela td.data { color: var(--texto-2); font-variant-numeric: tabular-nums; }
+.tabela tbody tr { cursor: default; }
+.tabela tbody tr.selecionada { box-shadow: inset 3px 0 0 var(--acento); }
+.tabela col.c-tipo { width: 22%; } .tabela col.c-marca { width: 20%; } .tabela col.c-modelo { width: 22%; }
+.tabela col.c-serie { width: 18%; } .tabela col.c-data { width: 18%; }
+.tabela { table-layout: fixed; }
+
+.rodape-tabela { display: flex; align-items: center; gap: 8px; padding: 11px 18px; border-top: 1px solid var(--borda); }
+.dica-teclas kbd { font-size: 10px; }
+
+.vazio { position: absolute; inset: 42px 0 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; text-align: center; padding: 24px; }
+.vazio-icone { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 4px;
+  background: var(--acento-suave); color: var(--acento-texto); }
+.vazio .btn { margin-top: 8px; }
+
+/* ---------- detalhes ---------- */
+.painel-detalhe { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.detalhe-conteudo { flex: 1; min-height: 0; padding: 18px; }
+.detalhe-vazio, .detalhe-varios { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; text-align: center; color: var(--texto-3); padding: 0 12px; }
+.detalhe-varios { color: var(--texto); }
+
+.foto { width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 1px solid var(--borda); border-radius: 12px; overflow: hidden;
+  background: var(--fundo-fundo); display: grid; place-items: center; cursor: zoom-in; }
+.foto:disabled { cursor: default; }
+.foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.foto-vazia { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--texto-3); font-size: var(--texto-sm); }
+
+.detalhe-tipo { margin-top: 16px; font-size: var(--texto-xs); font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--acento-texto); }
+.detalhe-nome { margin-top: 3px; word-break: break-word; }
+.dados { display: grid; grid-template-columns: auto 1fr; gap: 9px 14px; margin: 16px 0 0; font-size: var(--texto-sm); }
+.dados dt { color: var(--texto-2); }
+.dados dd { margin: 0; text-align: right; word-break: break-word; }
+.mono { font-family: var(--fonte-mono); }
+.dados dd.mono { font-size: 12.5px; color: var(--texto-2); }
+.observacoes { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--borda); }
+.observacoes p { margin: 6px 0 0; font-size: var(--texto-sm); color: var(--texto); white-space: pre-wrap; word-break: break-word; }
+
+.detalhe-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px 18px 18px; border-top: 1px solid var(--borda); }
+
+/* ---------- formulario ---------- */
+.modal { width: min(560px, 100%); }
+.modal-pequeno { width: min(440px, 100%); }
+.form-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 14px; padding-bottom: 6px; }
+.form-grade .largo { grid-column: 1 / -1; }
+.obrigatorio { color: var(--acento-texto); }
+.erro-campo { color: var(--perigo); }
+.entrada.invalida { border-color: var(--perigo); box-shadow: 0 0 0 3px color-mix(in srgb, var(--perigo) 22%, transparent); }
+
+.sugestoes-ancora { position: relative; }
+.sugestoes { top: calc(100% + 4px); left: 0; right: 0; max-height: 220px; overflow: auto; min-width: 0; max-width: none; }
+.sugestoes .menu-item.ativa { background: var(--superficie-hover); }
+.sugestoes .menu-item b { font-weight: 650; color: var(--acento-texto); }
+
+.foto-campo { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; }
+.foto-previa { width: 96px; height: 72px; border-radius: 10px; overflow: hidden; display: grid; place-items: center;
+  background: var(--fundo-fundo); border: 1px solid var(--borda); color: var(--texto-3); }
+.foto-previa img { width: 100%; height: 100%; object-fit: cover; }
+.foto-campo-texto { gap: 8px; }
+
+/* ---------- excluir ---------- */
+.excluir-pergunta { margin: 4px 0 10px; font-size: var(--texto-lg); }
+.excluir-lista { margin: 0 0 12px; padding: 10px 14px 10px 30px; max-height: 180px; overflow: auto; border-radius: var(--r-md);
+  background: var(--fundo-fundo); border: 1px solid var(--borda); font-size: var(--texto-sm); }
+.btn-perigo-cheio { background: var(--perigo); color: #fff; }
+.btn-perigo-cheio:hover:not(:disabled) { filter: brightness(.92); }
+@media (prefers-color-scheme: dark) { :root:not([data-tema="claro"]) .btn-perigo-cheio { background: #C24A43; } }
+
+@media (max-width: 960px) {
+  .corpo { grid-template-columns: 1fr 260px; }
+  .cabecalho .busca { width: 220px; }
+  .dica-teclas { display: none; }
+}
