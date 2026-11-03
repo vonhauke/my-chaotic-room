@@ -37,7 +37,6 @@ abertos = []
 app_mod.webbrowser.open = lambda url: abertos.append(url)   # "Buscar no Google" sem abrir o navegador
 
 import argila  # noqa: E402
-import webview  # noqa: E402
 
 CAPTURAS = os.environ.get("ARGILA_CAPTURAS")
 falhas = []
@@ -215,7 +214,9 @@ def main():
     app = app_mod.App()
     janela = argila.criar_janela("my chaotic room (teste)", app, 1080, 700, 880, 520)
     app._janela = janela
-    webview.start(roteiro, (janela, app), http_server=True, private_mode=True)
+    # abre pelo mesmo caminho do app de verdade (argila.iniciar, com o ícone)
+    argila.iniciar(roteiro, (janela, app),
+                   icone=os.path.join("assets_icone", "icone_app_instrumentos", "icone_1024.png"), titulo=app_mod.TITULO)
     shutil.rmtree(TMP, ignore_errors=True)
     if falhas:
         print(f"\n{len(falhas)} falha(s):\n- " + "\n- ".join(falhas))
